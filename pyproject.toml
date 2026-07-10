@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "netprobe-agent"
+version = "0.1.0"
+description = "Evidence-based DNS, TCP, TLS/SNI, HTTP Host and route diagnostics"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "gon7187" }]
+keywords = [
+  "network-diagnostics",
+  "dpi",
+  "dns",
+  "sni",
+  "traceroute",
+  "vpn",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Networking",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pre-commit>=4.2",
+  "pyright>=1.1.400",
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "ruff>=0.15",
+]
+
+[project.urls]
+Homepage = "https://github.com/gon7187/netprobe-agent"
+Repository = "https://github.com/gon7187/netprobe-agent"
+Issues = "https://github.com/gon7187/netprobe-agent/issues"
+Changelog = "https://github.com/gon7187/netprobe-agent/blob/main/CHANGELOG.md"
+
+[project.scripts]
+netprobe = "netprobe.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/netprobe"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = ["--strict-markers", "--strict-config"]
+markers = [
+  "integration: performs real network access",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+include = ["src", "tests"]

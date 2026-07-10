@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible defect in netprobe-agent.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve netprobe-agent. Remove secrets and private IPs from reports before attaching them.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "netprobe 0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options: ["Windows", "Linux", "macOS", "Other"]
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Redact hostnames or query parameters if they are sensitive.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and sanitized output
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed tokens, credentials, private URLs, and other secrets.
+          required: true

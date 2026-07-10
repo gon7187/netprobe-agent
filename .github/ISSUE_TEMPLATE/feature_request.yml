@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest a diagnostic, output, or platform improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Which diagnostic question cannot be answered today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and false-positive risks
+      description: Explain how the probe could distinguish filtering from ordinary server/network behavior.
