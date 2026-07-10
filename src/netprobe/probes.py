@@ -61,7 +61,8 @@ def _endpoint(address: str, port: int) -> tuple[Any, ...]:
 
 def _error_code(exc: BaseException) -> int | None:
     if isinstance(exc, OSError):
-        return exc.winerror if getattr(exc, "winerror", None) is not None else exc.errno
+        winerror = getattr(exc, "winerror", None)
+        return winerror if isinstance(winerror, int) else exc.errno
     return None
 
 
